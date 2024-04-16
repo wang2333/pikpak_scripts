@@ -523,6 +523,7 @@ class PikPak {
     );
     const userData = {
     id: this.user_id,
+    time:new Date().toTimeString(),
     用户名: this.email,
     密码: this.password
   };
