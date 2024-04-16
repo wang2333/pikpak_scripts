@@ -18,9 +18,11 @@ function displayUsers(users) {
 
         const email = user['用户名'];
         const password = user['密码'];
+        const time = user['time'];
 
         userDiv.innerHTML = `
             <div class="user-title">${email}</div>
+            <div class="user-title">${time}</div>
             <div class="user-info">
                 <div><button class="copy-btn" onclick="copyToClipboard('${email}')">复制账号</button>
                 <button class="copy-btn" onclick="copyToClipboard('${password}')">复制密码</button></div>
