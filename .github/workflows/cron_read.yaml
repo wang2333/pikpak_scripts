@@ -3,19 +3,19 @@ name: Scheduled Node.js CI
 on:
   schedule:
     - cron: '*/10 * * * *'
-  workflow_dispatch: # 添加这行以允许手动触发
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 5 # 设置作业超时时间为10分钟
+    timeout-minutes: 10  # 更新超时时间为10分钟
 
     strategy:
       matrix:
         node-version: [20.x] 
 
     steps:
-      - uses: actions/checkout@v3 
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -24,3 +24,10 @@ jobs:
         run: npm install 
       - name: Run a script
         run: node main.js
+      - name: Commit and push if changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add users.json
+          git commit -m "Update users.json from GitHub Actions" || echo "No changes to commit"
+          git push
