@@ -2,7 +2,7 @@ name: Scheduled Node.js CI
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 */1 * * *'  # 每1小时执行一次
   workflow_dispatch: # 添加这行以允许手动触发
 
 jobs:
@@ -23,13 +23,4 @@ jobs:
       - name: Install dependencies
         run: npm install 
       - name: Run a script
-        run: node main.js 
-      - name: Commit Changes
-        run: |
-          git config --global user.email "296290877@qq.com"
-          git config --global user.name "wang2333"
-          git add .
-          git diff --staged --quiet || git commit -m "Update files at $(date '+%Y-%m-%d %H:%M:%S')"
-          git push origin HEAD:main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node main.js
