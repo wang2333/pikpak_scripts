@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('users.json')
         .then(response => response.json())
         .then(data => {
-            if (data.length > 3) {
-                data = data.slice(data.length - 3);
-            }
+            // if (data.length > 3) {
+            //     data = data.slice(data.length - 3);
+            // }
             displayUsers(data);
         })
         .catch(error => console.error('Error fetching users:', error));
